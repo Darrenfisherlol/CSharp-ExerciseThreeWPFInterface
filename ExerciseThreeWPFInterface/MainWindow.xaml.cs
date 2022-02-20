@@ -38,8 +38,10 @@ namespace ExerciseThreeWPFInterface
         // print students in list box in correct format
         public override string ToString()
         {
-            return fullName;
+            string message = "Name: " + fullName + ", Weight: " + weight +", Grade: " + grade;
+            return message;
         }
+
     }
 
 /// <summary>
@@ -48,9 +50,12 @@ namespace ExerciseThreeWPFInterface
 
     public partial class MainWindow : Window
     {
-
+        // initialize the student list 
         List<Student> studentList;
 
+        // store total student weights
+        public List<double> gradelist = new List<double>();
+        public List<double> WeightList = new List<double>();
 
         public MainWindow()
         {
@@ -58,14 +63,70 @@ namespace ExerciseThreeWPFInterface
 
             studentList = new List<Student>();
 
+            studentListBox.ItemsSource = studentList;
+        }
+
+        private void addButtonClicked(object sender, RoutedEventArgs e)
+        {
+            // get user data
+            string nameInput = userFullNametxtbox.Text;
+            double userWeight = Convert.ToDouble(userWeighttxtbox.Text);
+            double userGrade = Convert.ToDouble(userGradetxtbox.Text);
+            
+            Student newStudent = new Student(nameInput,userWeight,userGrade);
+            
+            // add user to list for later retrieval and display
+            studentList.Add(newStudent);
+
+            WeightList.Add(userWeight);
+            gradelist.Add(userGrade);
+
+            // make sure the new user input appears into the text box
+            studentListBox.Items.Refresh();
+
+            // display the proper txtbox for total amount of students weight and grade
+            usersAvgWeighttxtbox.Text = getAvgWeight();
+            userAvgGradetxtbox.Text = getAvgGrade();
+        }
+
+          // created 2 functions to calculate averages 
+          // ~~ you could use one but lets use 2 for no confusion
+     
+        private string getAvgWeight()
+        {
+            double sum = 0;
+            foreach (var x in WeightList)
+            {
+                sum = sum + x;
+            }
+            return (sum / WeightList.Count).ToString();
+        }
+        
+        private string getAvgGrade()
+        {
+            double sum = 0;
+            foreach (var x in gradelist)
+            {
+                sum = sum + x;
+            }
+            return (sum / WeightList.Count).ToString();
+        }
+
+        private void studentNameDoubleClicked(object sender, MouseButtonEventArgs e)
+        {
+            // show student grade if clicked on
+            if (studentListBox.SelectedIndex != -1)
+            {
+                // created a new student within this class to display the total weight
+                Student receipt = (Student)this.studentListBox.SelectedItem;
+                MessageBox.Show(receipt.ToString());
+                
+            }
+
+
 
 
 
         }
-
-
-
-
-
     }
 }

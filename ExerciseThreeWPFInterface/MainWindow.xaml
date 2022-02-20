@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
-
     <Canvas>
 
         <!-- Labels ~ does nothing-->
@@ -27,40 +26,15 @@
         <TextBox x:Name="userWeighttxtbox" Canvas.Left="224" TextWrapping="Wrap" Text="" Canvas.Top="185" Width="120"/>
         <TextBox x:Name="userGradetxtbox" Canvas.Left="224" TextWrapping="Wrap" Text="" Canvas.Top="225" Width="120"/>
 
-        <Button x:Name="addUserInputButton" Content="Add" Canvas.Left="250" Canvas.Top="263"/>
-
+        <Button x:Name="addUserInputButton" Content="Add" Canvas.Left="250" Canvas.Top="263" Click="addButtonClicked"/>
 
         <!-- Bottom avg weight and grade input -->
-        <TextBox x:Name="usersAvgWeighttxtbox" Canvas.Left="349" TextWrapping="Wrap" Text="" Canvas.Top="340" Width="80"/>
-        <TextBox x:Name="userAvgGradetxtbox" Canvas.Left="478" TextWrapping="Wrap" Text="" Canvas.Top="340" Width="80"/>
-
+        <TextBox x:Name="usersAvgWeighttxtbox" Canvas.Left="349" TextWrapping="Wrap" Text="" Canvas.Top="340" Width="80" IsEnabled="False"/>
+        <TextBox x:Name="userAvgGradetxtbox" Canvas.Left="478" TextWrapping="Wrap" Text="" Canvas.Top="340" Width="80" IsEnabled="False"/>
 
         <!-- Display entered user list -->
-        <ListBox Height="210" Width="200" Canvas.Left="434" Canvas.Top="98" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <ListBox x:Name="studentListBox" Height="210" Width="200" Canvas.Left="434" Canvas.Top="98" MouseDoubleClick="studentNameDoubleClicked" />
 
     </Canvas>
-
-
-
-
-
 
 </Window>
